@@ -1,10 +1,11 @@
 import React from 'react';
 
 
-// If you only need "render", just use a stateless funcitonal component
+// If you only need "render" to display some HTML, just use a stateless functional component
 
 const Header = (props) => {
 	// function Header() { } is the same, or var Header = function() {}
+	// pass in the props
 	return (
 		// Supply data to a component through 'props' such as alt tag, etc
 		<header className="top">
@@ -24,6 +25,10 @@ const Header = (props) => {
 			<h3 className="tagline"><span>{props.tagline}</span></h3>
 		</header>
 	)
-}	
+}
+
+Header.propTypes = {
+	tagline: React.PropTypes.string.isRequired
+}
 
 export default Header;

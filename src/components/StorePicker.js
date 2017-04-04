@@ -2,6 +2,8 @@
 // If something is needed inside of a module, it gets imported.
 
 import React from 'react';
+
+// getFunName is a named import
 import { getFunName } from '../helpers';
 
 // Using ES6 Classes
@@ -18,7 +20,7 @@ class StorePicker extends React.Component {
 	// Every component needs at least one method
 	goToStore(event) {
 		event.preventDefault();
-		// first grab the text from the box, but do not touch the DOM itself so no $('selector').value() etc
+		// first grab the text from the box, but do not touch/look at the DOM itself so no $('selector').value() etc
 		// there is no "this" - console.log(this) is null - methods are not implicitly bound to component
 		const storeId = this.storeInput.value; // Works now after special bind in constructor or onSubmit function below
 		console.log(`Going to ${storeId}`);
@@ -46,7 +48,9 @@ class StorePicker extends React.Component {
 				
 				<input type="text" required placeholder="Store Name" defaultValue={getFunName()} ref={(input => {this.storeInput = input})} />
 
-				{/* React events are wrapped in SyntheticEvent, similar to jQuery.on, etc */}
+				{/* React events are wrapped in SyntheticEvent, similar to jQuery.on, etc 
+				https://facebook.github.io/react/docs/events.html
+				*/}
 				<button type="submit">Visit Store -></button>
 			</form>
 		) 
@@ -56,8 +60,10 @@ class StorePicker extends React.Component {
 	}
 }
 
+// Tells react that the storepicker component expects this, mkes transitionTo method from goToStore, available
+
 StorePicker.contextTypes = {
-	router: React.PropTypes.object // Tells react that the storepicker component expects this, mkes transitionTo method available
+	router: React.PropTypes.object 
 }
 
 // makes the component available for import
